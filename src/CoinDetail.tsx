@@ -1,78 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { SparklineChart } from './Sparkline';
+import { fetchCoinByID, CoinDetails } from './API';
 
-interface CoinDetails {
-    market_data: {
-        market_cap_rank: number;
-        current_price: { zar: number };
-        market_cap: { zar: number };
-        total_volume: { zar: number };
-        fully_diluted_valuation: { zar: number };
-        circulating_supply: number;
-        total_supply: number;
-        max_supply?: number;
-        price_change_percentage_7d_in_currency: { zar: number, usd: number };
-        sparkline_7d: { price: number[] }; // Add this property
-        // Add other properties as needed
-    };
-    name: string;
-    image?: { small: string };
-    // Add other properties as needed
-}
 
-export function CoinDetail() {
+export const CoinDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const [coinDetails, setCoinDetails] = useState<CoinDetails | null>(null);
     const [error, setError] = useState<boolean>(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchCoinByID();
-    }, [id]);
-
-    const fetchCoinByID = async () => {
-        const url = new URL(`https://api.coingecko.com/api/v3/coins/${id}`);
-        const params = {
-            sparkline: true,
-            vs_currency: 'zar',
-            localisation: 'zar'
-        };
-        // Convert params to Record<string, string>
-        const searchParams: Record<string, string> = {};
-        for (const [key, value] of Object.entries(params)) {
-            searchParams[key] = String(value);
-        }
-        url.search = new URLSearchParams(searchParams).toString();
-
-        try {
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
+        const fetchData = async () => {
+            try {
+                const data = await fetchCoinByID(id as string);
+                setCoinDetails(data);
+                setError(false);
+            } catch (error) {
+                if (error instanceof Error) {
+                    console.error('Failed to fetch coins:', error.message);
+                    setCoinDetails(null); // Reset coinDetails to null on error
+                    setError(true);
+                } else {
+                    // Handle other types of errors
+                    console.error('An unknown error occurred:', error);
                 }
-            });
-
-            if (!response.ok) {
-                throw new Error(`Error: ${response.status}`);
             }
+        };
 
-            const data: CoinDetails = await response.json();
-            setCoinDetails(data);
-            setError(false);
-        } catch (error) {
-            if (error instanceof Error) {
-            console.error('Failed to fetch coins:', error.message);
-            setCoinDetails(null); // Reset coinDetails to null on error
-            setError(true);
-            } else {
-                // Handle other types of errors
-                console.error('An unknown error occurred:', error);
-            }
-        }
-    };
+        fetchData();
+    }, [id, navigate]);
 
-    const GoBackButton = () => {
+    const GoBackButton: React.FC = () => {
         const goBack = () => {
             navigate(-1);
         };
@@ -130,19 +89,17 @@ export function CoinDetail() {
         );
     };
 
-    const DetailPage = () => {
-        return (
-            <section>
-                <GoBackButton />
-                <div className='layout-container'>
-                    <div className='details-and-sparkline-container'>
-                        <CoinDetailContainer coinDetails={coinDetails!} localeString={'zar'} />
-                        <SparklineChart coinDetails={coinDetails!} />
-                    </div>
+    const DetailPage: React.FC = () => (
+        <section>
+            <GoBackButton />
+            <div className='layout-container'>
+                <div className='details-and-sparkline-container'>
+                    <CoinDetailContainer coinDetails={coinDetails!} localeString={'zar'} />
+                    <SparklineChart coinDetails={coinDetails!} />
                 </div>
-            </section>
-        );
-    }
+            </div>
+        </section>
+    );
 
     if (error) {
         return (
@@ -151,4 +108,4 @@ export function CoinDetail() {
     }
 
     return <DetailPage />;
-}
+};

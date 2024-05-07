@@ -1,6 +1,6 @@
-# Simple Crypto Web App
+# Simple Crypto Web App - Typescript
 ## Description
-A super simple web app, built using ReactJS and no prior React experience. The app displays a list of the top 10 cryptocurrencies and some additional details. You can click on a cryptocurrency to see more details about it.
+A super simple web app, built using React and Typescript and no real prior experience. The app displays a list of the top 10 cryptocurrencies and some additional details. You can click on a cryptocurrency to see more details about it.
 
 ## Requirements
 This project was made using `npm 10.7.0` and `npx 10.7.0`.
