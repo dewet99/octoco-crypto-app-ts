@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Coin } from './Coin';
+import './styles.css';
 
 interface CoinData {
     id: string;

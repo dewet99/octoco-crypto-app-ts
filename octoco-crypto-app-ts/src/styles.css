@@ -1,0 +1,261 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+    padding: 0;
+  }
+  
+  h1 {
+    margin-top: 0;
+    font-size: 22px;
+  }
+  
+  h2 {
+    margin-top: 0;
+    font-size: 20px;
+  }
+  
+  h3 {
+    margin-top: 0;
+    font-size: 18px;
+  }
+  
+  h4 {
+    margin-top: 0;
+    font-size: 16px;
+  }
+  
+  h5 {
+    margin-top: 0;
+    font-size: 14px;
+  }
+  
+  h6 {
+    margin-top: 0;
+    font-size: 12px;
+  }
+  
+  code {
+    font-size: 1.2em;
+  }
+  
+  ul {
+    padding-inline-start: 20px;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+    padding: 0;
+  }
+  
+  .coin-container {
+    display: flow-root;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
+    
+  }
+  .coin-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Adjust the number of columns as needed
+    /* justify-items: start; */
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 2px solid #e0e0e0;
+  }
+  
+  .coin-name img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  
+  /* Style other columns similarly */
+  .coin-price, .coin-volume, .coin-marketcap, .coin-percent, .coin-id, .coin-default {
+    text-align: right;
+    /* Add flex-grow, flex-shrink, and flex-basis if you need specific sizing behavior */
+    /* flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto; */
+  }
+  
+  .coin-name {
+    text-align: left;
+    font-weight: bold;
+    /* Add flex-grow, flex-shrink, and flex-basis if you need specific sizing behavior */
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+    cursor: pointer;
+  
+  }
+  
+  .header-name, .header-id {
+    text-align: left;
+    font-weight: bold;
+    /* Add flex-grow, flex-shrink, and flex-basis if you need specific sizing behavior */
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+    font-size: larger;
+  }
+  
+  .header-price, .header-volume, .header-marketcap, .header-percent, .header-default {
+    text-align: right;
+    font-weight: bold;
+    font-size: larger; 
+  }
+  
+  .positive-change {
+    color: green;
+  }
+  
+  .negative-change {
+    color: red;
+  }
+  
+  
+  .coin-detail-header img {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: start;
+  }
+  
+  .coin-details-price {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  
+  
+  /* Styling for the header section of the coin details */
+  .coin-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the coin name and the price */
+  .coin-detail-name {
+    font-weight: bold;
+    font-size: 36px; /* Large font size for visibility */
+    align-self: center;
+    margin-left: 8px;
+  }
+  
+  .coin-detail-price {
+    font-weight: bold;
+    font-size: 24px; /* Large font size for visibility */
+    align-self: center;
+  
+  }
+  
+  /* Styling for the price and percentage change container */
+  .coin-price-detail-container {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  
+  /* Styling for the smaller text, such as market cap and volume */
+  .coin-detail-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee; /* Light line for separating items */
+  }
+  
+  .coin-detail-header-row {
+    display: flex;       /* Establishes a flex container */
+    align-items: center; /* Vertically centers the flex items */
+    justify-content: start; /* Aligns items to the start of the container */
+  }
+  
+  .detail-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid hsla(0, 0%, 93%, 0.589);
+  }
+  
+  .detail-item-label {
+    text-align: left;
+    margin-right: 20px;
+  }
+  
+  .detail-item-value {
+    text-align: right;
+    font-weight: bold;
+    flex-grow: 1;
+  }
+  
+  /* Sparkline chart container */
+  .sparkline-container {
+    flex: 1; /* Allows the sparkline to take up twice the space of the details box */
+    align-items: stretch; /* Ensures the chart is the full height of its container */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+  }
+  
+  .details-and-sparkline-container {
+    display: flex;
+    max-width: 1600px; /* Maximum width of the content area */
+    width: 100%; /* Use up the entire width allowed by the layout-container */
+    gap: 40px; /* Space between the details box and the graph */
+    align-items: stretch;
+  }
+  
+  .layout-container {
+    display: flex;
+    justify-content: center; /* Centers the content on the main axis */
+    padding: 0 40px; /* 80px of padding on left and right sides */
+    align-items: 100%; /* Stretches children to fill the container height */
+    gap: 80px; /* Space between the details box and the graph */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* border-radius: 8px; */
+    padding: 16px;
+  }
+  
+  /* General styling for the coin detail container */
+  .coin-detail-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 500px; /* Adjust the width as needed */
+    margin-left: 0px;
+    margin-top: 10px;
+    width: 100%
+  
+  
+  }
+  
+  .smalltext {
+    font-size: 8px;
+    padding: 2px;
+    text-align: center;
+    color: #666;
+  }
+  
+  .button {
+    align-items: stretch;
+  }
+  /* Add more CSS for other classes */
+  
