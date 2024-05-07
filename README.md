@@ -23,7 +23,7 @@ This project was made using `npm 10.7.0` and `npx 10.7.0`.
     ```bash
     npm run dev
     ```
-4. The web app should open automatically inside your default browser.
+4. Open the displayed link in your browser.
 
 ## Usage
 Click on stuff until stuff happens. That's about the extent of the functionality. To be more specific: click on the coin name, and the coin's details page will open.
